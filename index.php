@@ -1,6 +1,8 @@
 
 <?php
 
+// testing if vscode pushing works
+
 $loggedin = false;
 if (isset($_POST["user"]) && isset($_POST["pass"])) {
     require("config/db_config.php");
