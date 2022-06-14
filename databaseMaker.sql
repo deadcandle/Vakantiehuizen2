@@ -29,8 +29,19 @@ create table afbeeldingen (
     foreign key (huis_id) references huizen (id)
 );
 
+create table accounts (
+	account_id int auto_increment,
+    account_user varchar(24),
+    account_pass varchar(255),
+    account_date datetime default current_timestamp,
+    primary key (account_id)
+);
+
 
 -- inserts:
+
+-- accounts:
+insert into accounts (account_user, account_pass) values ("admin", "123");
 
 -- paginas:
 insert into teksten (pagina, titel, tekst) values ("index", "de titel Homepagina", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nam eaque, corporis nostrum quo qui similique quidem culpa explicabo maiores laboriosam dolore alias eveniet, facilis consequatur tempore esse distinctio repudiandae.");

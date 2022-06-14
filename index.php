@@ -1,25 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="content/theme.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    include "content/menu.php";
-    ?>
-    <div class="container">
-        <?php
-        include "config/db_config.php";
-        $validpages = array("index", "huizen", "contact");
-        if (isset($_GET["page"])) {
-            if (!in_array($_GET["page"], $validpages)) {die("<h1>page went no</h1>");}
-            include "content/" . $_GET["page"] . ".php";
+
+<?php
+
+$loggedin = false;
+if (isset($_POST["user"]) && isset($_POST["pass"])) {
+    require("config/db_config.php");
+    $conn = new mysqli($host, $user, $pass, $db);
+    $user = $_POST["user"];
+    $pass = $_POST["pass"];
+    $login_sql = "select account_pass from accounts where account_user = '".$user."'";
+    if ($result = $conn -> query($login_sql)) {
+        if ($result -> num_rows == 1) {
+            $row = $result -> fetch_assoc();
+            if (password_verify($pass, $row["account_pass"])) {
+                echo "je bent ingelogd, goed gedaan";
+                $loggedin = true;
+            } else {
+                echo "je hebt het verkloot (wachtwoord fout)";
+            }
+        } else {
+            echo "je hebt het verkloot (account bestaat niet)";
         }
-        ?>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
-</html>
+    }
+}
+if (!$loggedin) {
+?>
+<form action="" method="post">
+    <input type="text" name="user">
+    <input type="password" name="pass">
+    <input type="submit" value="verstuur persoonlijke gegevens naar china">
+</form>
+<?php
+    }
+?>

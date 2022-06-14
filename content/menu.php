@@ -7,9 +7,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" href="?page=index">Home</a>
+                <a class="nav-link" href="?page=index">Home</a>
                 <a class="nav-link" href="?page=huizen">Vakantiehuizen</a>
                 <a class="nav-link" href="?page=contact">Contact</a>
+                <a class="nav-link" href="?page=admin">Admin</a>
             </div>
         </div>
     </div>
