@@ -12,7 +12,7 @@ create table teksten (
 );
 
 create table huizen (
-	id int auto_increment,
+	id int(6) auto_increment,
     huis varchar(255),
     personen int(6),
     omschrijving varchar(255),
