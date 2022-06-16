@@ -1,5 +1,6 @@
 <?php
 
+// password is 'admin' btw
 $loggedin = false;
 if (isset($_POST["user"]) && isset($_POST["pass"])) {
     require("config/db_config.php");
@@ -29,13 +30,15 @@ if (!$loggedin) { ?>
 </form>
 <?php } else { ?>
     <button onclick="document.getElementById('toevoegen').removeAttribute('hidden')">maak een nieuw vakantie huis</button>
-    <form action="/content/nieuwvakantiehuis.php" id="toevoegen" enctype="multipart/form-data" method="post" hidden>
+    <form style="background-color: rgb(85, 255, 85); border: 50px solid rgb(96, 192, 255);" action="/content/nieuwvakantiehuis.php" id="toevoegen" enctype="multipart/form-data" method="post" hidden>
         <h1>een nieuw vakantie huis maken</h1>
         <input type="number" name="personen" placeholder="aantal personen">
         <input type="text" name="plaats" placeholder="plaats">
         <textarea name="omschrijving" cols="30" rows="10" placeholder="verklaar dit vakantie huis"></textarea>
         <input type="number" name="prijs" placeholder="hoe duur is het vakantie huis">
-        <input type="file" accept=".png, .jpg, .jpeg" name="vakantiehuisafbeelding">
+        <input type="file" accept=".png, .jpg, .jpeg" multiple name="vakantiehuisafbeelding">
         <input type="submit" value="versturen">
+        <img src="../images/pepepok.jpg" style="width: 20%;">
+        <img src="../images/stonks.jpg" style="width: 20%;">
     </form>
 <?php } ?>

@@ -40,40 +40,14 @@ create table accounts (
 
 -- inserts:
 
--- accounts:
-insert into accounts (account_user, account_pass) values ("admin", "123");
+-- admin account:
+insert into accounts (account_user, account_pass) values ("admin", "$2y$10$Hl6S5b1A2i50qcPFfukL2uvFLgjNjSr5QfC8ray/SM5oh7luml5DW");
 
 -- paginas:
 insert into teksten (pagina, titel, tekst) values ("index", "de titel Homepagina", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nam eaque, corporis nostrum quo qui similique quidem culpa explicabo maiores laboriosam dolore alias eveniet, facilis consequatur tempore esse distinctio repudiandae.");
 insert into teksten (pagina, titel, tekst) values ("huizen", "de titel Huizen", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nam eaque, corporis nostrum quo qui similique quidem culpa explicabo maiores laboriosam dolore alias eveniet, facilis consequatur tempore esse distinctio repudiandae.");
 insert into teksten (pagina, titel, tekst) values ("contact", "de titel Contact", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nam eaque, corporis nostrum quo qui similique quidem culpa explicabo maiores laboriosam dolore alias eveniet, facilis consequatur tempore esse distinctio repudiandae.");
 
--- Voeg de huizen toe
-insert into huizen (huis, personen, omschrijving, prijs) values ("Plaats1", 8, "Dit is een huis omschrijving", 95.00);
-insert into huizen (huis, personen, omschrijving, prijs) values ("Plaats2", 12, "Dit is een huis omschrijving", 120.00);
-insert into huizen (huis, personen, omschrijving, prijs) values ("Plaats3", 10, "Dit is een huis omschrijving", 110.50);
-insert into huizen (huis, personen, omschrijving, prijs) values ("Plaats4", 16, "Dit is een huis omschrijving (dit huis lijd aan te veel armoede, er zijn dus geen fotos van.", 135.95);
-
--- afbeeldingen voor de huizen (slechts 3 soorten)
-insert into afbeeldingen (huis_id, afbeelding) values (1, "huis1.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (2, "huis2.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (3, "armoedehuis.jpg");
-
-insert into afbeeldingen (huis_id, afbeelding) values (1, "huis1.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (2, "armoedehuis.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (3, "armoedehuis.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (1, "huis1.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (2, "foto.png");
-insert into afbeeldingen (huis_id, afbeelding) values (3, "huis2.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (1, "huis1.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (2, "huis2.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (3, "huis1.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (1, "foto.png");
-insert into afbeeldingen (huis_id, afbeelding) values (2, "foto.png");
-insert into afbeeldingen (huis_id, afbeelding) values (3, "huis1.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (1, "huis1.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (2, "huis2.jpg");
-insert into afbeeldingen (huis_id, afbeelding) values (3, "armoedehuis.jpg");
 
 
 
