@@ -72,12 +72,16 @@ if (!$loggedin) { ?>
     </form>
     <script>
         function deleteHouse(id) {
-            let deleteHttp = new XMLHttpRequest()
-            deleteHttp.onload = function() {
-                window.location.reload()
+            if (confirm("weet je het zeker")) {
+                let deleteHttp = new XMLHttpRequest()
+                deleteHttp.onload = function() {
+                    window.location.reload()
+                }
+                deleteHttp.open("get", "/content/yeetVakantieHuis.php?id=" + id)
+                deleteHttp.send()
+            } else {
+                alert("oke, kan gebeuren")
             }
-            deleteHttp.open("get", "/content/yeetVakantieHuis.php?id=" + id)
-            deleteHttp.send()
         }
     </script>
     <table id="adminseehouses">
