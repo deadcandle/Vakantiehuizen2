@@ -23,6 +23,18 @@ if (isset($_POST["user"]) && isset($_POST["pass"])) {
     }
 }
 if (!$loggedin) { ?>
+<script>
+    function showForm(id) {
+        document.getElementById("editHuis").removeAttribute("hidden")
+    }
+</script>
+<form action="pasvakantiehuisaan.php" method="post" id="editHuis" hidden>
+    <input type="number" name="personen">
+    <input type="text" name="huis">
+    <textarea name="omschrijving"></textarea>
+    <input type="number" name="prijs">
+    <input id="huisid" type="hidden" name="id" value="">
+</form>
 <form action="" method="post">
     <input type="text" name="user">
     <input type="password" name="pass">
@@ -40,5 +52,42 @@ if (!$loggedin) { ?>
         <input type="submit" value="versturen">
         <img src="../images/pepepok.jpg" style="width: 20%;">
         <img src="../images/stonks.jpg" style="width: 20%;">
+        <style>
+            #adminseehouses td {
+                padding: 5px 10px;
+                background-color: #FFFFEE;
+                border-left: 1px solid maroon;
+                border-top: 1px solid maroon;
+            }
+        </style>
     </form>
+    <table id="adminseehouses">
+        <tr>
+            <th>
+                <td>huis</td>
+                <td>personen</td>
+                <td>personen</td>
+                <td colspan="2">acties</td>
+            </th>
+        </tr>
+        <?php
+        require("config/db_config.php");
+        $conn = new mysqli($host, $user, $pass, $db);
+        $huizenSql = "select huis, personen, omschrijving, prijs from huizen";
+        $result = $conn -> query($huizenSql);
+        if ($result -> num_rows > 0) {
+            while ($row = $result -> fetch_assoc()) {
+                echo "<tr>";
+                echo "<td id='huis'>'".$row["huis"]."'</td>";
+                echo "<td id='personen'>'".$row["personen"]."'</td>";
+                echo "<td id='huis'>'".$row["omschrijving"]."'</td>";
+                echo "<td id='personen'>'".$row["prijs"]."'</td>";
+                echo "<td id='delete'><button onclick=''>delete</button></td>";
+                echo "<td id='edit'><button onclick=''>edit</button></td>";
+                echo "</tr>";
+            }
+        }
+        ?>
+    </table>
 <?php } ?>
+
