@@ -26,7 +26,7 @@ create table afbeeldingen (
     id int auto_increment,
     afbeelding varchar(255),
     primary key (id),
-    foreign key (huis_id) references huizen (id)
+    foreign key (huis_id) references huizen (id) on delete cascade
 );
 
 create table accounts (

@@ -61,6 +61,25 @@ if (!$loggedin) { ?>
             }
         </style>
     </form>
+    <form action="/content/pasvakantiehuisaan.php" method="post" id="aanpassenhuisform" hidden>
+        <h1>pas een vakantie huis aan</h1>
+        <input type="number" name="personen" placeholder="aantal personen">
+        <input type="text" name="plaats" placeholder="plaats">
+        <textarea name="omschrijving" cols="30" rows="10" placeholder="verklaar dit vakantie huis"></textarea>
+        <input type="number" name="prijs" placeholder="hoe duur is het vakantie huis">
+        <input type="hidden" name="huisid" id="huisid">
+        <input type="submit" value="klaar">
+    </form>
+    <script>
+        function deleteHouse(id) {
+            let deleteHttp = new XMLHttpRequest()
+            deleteHttp.onload = function() {
+                window.location.reload()
+            }
+            deleteHttp.open("get", "/content/yeetVakantieHuis.php?id=" + id)
+            deleteHttp.send()
+        }
+    </script>
     <table id="adminseehouses">
         <tr>
             <th>
@@ -73,17 +92,18 @@ if (!$loggedin) { ?>
         <?php
         require("config/db_config.php");
         $conn = new mysqli($host, $user, $pass, $db);
-        $huizenSql = "select huis, personen, omschrijving, prijs from huizen";
+        $huizenSql = "select id, huis, personen, omschrijving, prijs from huizen";
         $result = $conn -> query($huizenSql);
         if ($result -> num_rows > 0) {
             while ($row = $result -> fetch_assoc()) {
+                $theId = $row["id"];
                 echo "<tr>";
                 echo "<td id='huis'>'".$row["huis"]."'</td>";
                 echo "<td id='personen'>'".$row["personen"]."'</td>";
                 echo "<td id='huis'>'".$row["omschrijving"]."'</td>";
                 echo "<td id='personen'>'".$row["prijs"]."'</td>";
-                echo "<td id='delete'><button onclick=''>delete</button></td>";
-                echo "<td id='edit'><button onclick=''>edit</button></td>";
+                echo "<td id='delete'><button onclick='document.getElementById(`aanpassenhuisform`).removeAttribute(`hidden`);document.getElementById(`huisid`).value=$theId'>edit</button></td>";
+                echo "<td id='edit'><button onclick='deleteHouse(`$theId`)'>delete</button></td>";
                 echo "</tr>";
             }
         }
