@@ -86,12 +86,11 @@ if (!$loggedin) { ?>
     </script>
     <table id="adminseehouses">
         <tr>
-            <th>
-                <td>huis</td>
-                <td>personen</td>
-                <td>personen</td>
-                <td colspan="2">acties</td>
-            </th>
+            <td>huis</td>
+            <td>personen</td>
+            <td>beschrijving</td>
+            <td>euro</td>
+            <td colspan="2">acties</td>
         </tr>
         <?php
         require("config/db_config.php");
